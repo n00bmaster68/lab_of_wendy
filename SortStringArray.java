@@ -5,7 +5,7 @@ import java.io.FileWriter;
 
 class SortStringArray
 {
-	public static String[] readFile (String filename ) throws FileNotFoundException
+	public static String[] input (String filename ) throws FileNotFoundException
 	{
 		String[] str = new String [10000000];
 		File fname = new File (filename);
@@ -44,19 +44,20 @@ class SortStringArray
 		}
 	}
 
-	public static void sortByMonthDate (String[] str)throws Exception
+	public static String[] sortByMonth (String[] str)
 	{
+		String []s = str;
 		int []a = new int [10000000];
 		int []b = new int [10000000];
-		getMonthArrayDay(str, a, b);//a is month array, b is day array
-		int n = getLength(str);
+		getMonthArrayDay(s, a, b);//a is month array, b is day array
+		int n = getLength(s);
 		for (int i = 0; i < n - 1; i++)
 			for (int j = i + 1; j < n; j++)
 				if (a[i] > a[j])
 				{
-					String temp = str[i];
-					str[i] = str[j];
-					str[j] = temp;
+					String temp = s[i];
+					s[i] = s[j];
+					s[j] = temp;
 
 					int temp1 = a[i];
 					a[i] = a[j];
@@ -68,9 +69,9 @@ class SortStringArray
 				}
 				else if (a[i] == a[j] && b[i] > b[j])
 				{
-					String temp = str[i];
-					str[i] = str[j];
-					str[j] = temp;
+					String temp = s[i];
+					s[i] = s[j];
+					s[j] = temp;
 
 					int temp1 = a[i];
 					a[i] = a[j];
@@ -80,7 +81,7 @@ class SortStringArray
 					b[i] = b[j];
 					b[j] = temp2;
 				}
-		writeFile(str, "SortedByDate.txt");
+		return str;
 	}
 
 	public static void print (String[] str)
@@ -97,7 +98,7 @@ class SortStringArray
 			a[i] = str[i].substring(11, str[i].length());
 	}
 
-	public static void sortByName(String[] str)throws Exception
+	public static String[] sortByName(String[] str)
 	{
 		String[] name = new String [1000000];
 		int n = getLength(str);
@@ -110,10 +111,10 @@ class SortStringArray
 					name[i] = name[j];
 					name[j] = temp;
 				}
-		writeFile(name, "SortedByName.txt");
+		return name; 
 	}
 
-	public static void writeFile(String[] str, String filename)throws Exception
+	public static void output(String[] str, String filename)throws Exception
 	{
 		int n = getLength(str);
 		FileWriter writer = new FileWriter(filename);
@@ -125,9 +126,13 @@ class SortStringArray
 	public static void main (String[] args) throws FileNotFoundException, Exception
 	{
 		String[] str = new String [1000000];
-		str = readFile("releasedates.txt");
+		str = input("releasedates.txt");
 		
-		sortByMonthDate(str);
-		sortByName(str);
+		String[] result1 = sortByMonth(str);
+		String[] result2 = sortByName(str);
+
+		output(result1, "SortedByDate.txt");
+		output(result2, "SortedByName.txt");
+
 	}
 }
