@@ -85,13 +85,6 @@ class SortStringArray
 		return str;
 	}
 
-	public static void print (String[] str)
-	{
-		int n = getLength(str);
-		for (int i = 0; i < n; i++)
-			System.out.println(str[i]);
-	}
-
 	public static void getGameName (String[] str, String[] a)
 	{
 		int n = getLength(str);
@@ -119,8 +112,8 @@ class SortStringArray
 	{
 		int n = getLength(str);
 		FileWriter writer = new FileWriter(filename);
-      	for (int i = 0; i < n; i++)
-        	 writer.write(str[i] + "\n");
+      		for (int i = 0; i < n; i++)
+       			writer.write(str[i] + "\n");
       	writer.close();
 	}
 
