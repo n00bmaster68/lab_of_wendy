@@ -34,6 +34,7 @@ class SortStringArray
 		return number;
 	}
 
+	
 	public static void getMonthArrayDay (String[] str, int[] a, int[] b)
 	{
 		int n = getLength(str);
