@@ -82,7 +82,7 @@ class SortStringArray
 					b[i] = b[j];
 					b[j] = temp2;
 				}
-		return str;
+		return s;
 	}
 
 	public static void getGameName (String[] str, String[] a)
